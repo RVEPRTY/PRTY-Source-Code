@@ -6,7 +6,7 @@ body {
   color: #fff;
 }
 
-/* Sidebar */
+/* ===== SIDEBAR ===== */
 .sidebar {
   position: fixed;
   left: 0;
@@ -42,7 +42,7 @@ body {
   text-shadow: 0 0 10px #00ffff;
 }
 
-/* Toggle button */
+/* ===== TOGGLE BUTTON ===== */
 .toggle {
   position: fixed;
   top: 20px;
@@ -58,7 +58,7 @@ body {
   z-index: 1100;
 }
 
-/* Main content */
+/* ===== MAIN CONTENT ===== */
 .main {
   margin-left: 240px;
   padding: 20px;
@@ -71,7 +71,41 @@ body {
   text-shadow: 0 0 15px #ff00cc;
 }
 
-/* ===== GRID LAYOUT ===== */
+/* ===== CLOCK & DATE BOX ===== */
+.clock-box {
+  background: linear-gradient(145deg, #23234a, #1b1b2f);
+  padding: 15px 25px;
+  border-radius: 16px;
+  text-align: center;
+  color: #00ffff;
+  font-weight: bold;
+  font-size: 1.2em;
+  box-shadow: 0 0 15px rgba(0,255,255,0.4);
+  margin-bottom: 20px;
+}
+
+/* ===== UPDATES SECTION ===== */
+.updates {
+  background: linear-gradient(145deg, #23234a, #1b1b2f);
+  padding: 15px 25px;
+  border-radius: 16px;
+  color: #00ffff;
+  font-size: 1em;
+  box-shadow: 0 0 15px rgba(255,0,255,0.4);
+}
+
+.updates h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  text-shadow: 0 0 10px #ff00cc;
+}
+
+.updates ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+/* ===== GRID FOR GAMES/APPS ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -82,7 +116,7 @@ body {
 /* ===== CARDS ===== */
 .card, .game-card {
   display: flex;
-  flex-direction: column; /* stack image + title */
+  flex-direction: column;
   align-items: center;
   border-radius: 16px;
   overflow: hidden;
@@ -97,7 +131,7 @@ body {
   box-shadow: 0 0 25px rgba(0,255,255,0.8);
 }
 
-/* Images */
+/* Image inside card */
 .card img, .game-card img {
   width: 100%;
   height: 160px;
@@ -105,18 +139,18 @@ body {
   border-bottom: 2px solid rgba(255,255,255,0.2);
 }
 
-/* Titles */
+/* Game/App Title */
 .game-title, .game-card p {
+  display: block;
+  text-align: center;
   margin-top: 8px;
   font-weight: bold;
   color: #00ffff;
-  text-align: center;
-  font-size: 1em;
   text-shadow: 0 0 8px black;
   width: 100%;
 }
 
-/* ===== FILTER BAR ===== */
+/* ===== FILTER BAR (optional) ===== */
 .filter-bar {
   margin: 20px 0;
   display: flex;
@@ -139,7 +173,7 @@ body {
   box-shadow: 0 0 15px rgba(0,255,255,0.7);
 }
 
-/* ===== UNDER CONSTRUCTION ===== */
+/* ===== UNDER CONSTRUCTION PAGE ===== */
 .under-construction {
   height: 80vh;
   display: flex;
