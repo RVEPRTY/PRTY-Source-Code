@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PRTY - Games</title>
+  <title>PRTY – Apps</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -10,6 +10,7 @@
   <h2>PRTY</h2>
   <a href="index.html">Home</a>
   <a href="games.html">Games</a>
+  <a href="apps.html">Apps</a>
   <a href="movies.html">Movies</a>
   <a href="proxy.html">Proxy</a>
   <a href="credits.html">Credits</a>
@@ -18,17 +19,17 @@
 <button class="toggle" onclick="toggleSidebar()">☰</button>
 
 <div class="main">
-  <h1 class="page-title">🎮 Games</h1>
+  <h1 class="page-title">Apps</h1>
 
-  <!-- 🔍 Search + Type Filters -->
+  <!-- Search + Type Filters -->
   <div class="filter-bar">
-    <input id="searchBar" onkeyup="searchItems()" placeholder="Search games...">
+    <input id="searchBar" onkeyup="searchItems()" placeholder="Search apps...">
     <button onclick="filterItems('all')">All</button>
     <button onclick="filterItems('game')">Games</button>
     <button onclick="filterItems('app')">Apps</button>
   </div>
 
-  <!-- 🧩 Category Filters -->
+  <!-- Category Filters -->
   <div class="filter-bar">
     <button onclick="filterCategory('all')">All</button>
     <button onclick="filterCategory('story')">Story</button>
@@ -36,97 +37,32 @@
     <button onclick="filterCategory('puzzle')">Puzzle</button>
   </div>
 
-  <div class="grid">
+  <!-- App Grid -->
+  <div class="game-grid">
 
-    <div class="card game-card" data-type="game" data-category="story" onclick="launchGame('games/fnaf6.html')">
-      <img src="images/fnaf6.png">
-      <div class="game-title">FNAF 6</div>
+    <div class="game-card" data-type="app" data-category="action" onclick="launchApp('apps/app1.html')">
+      <img src="images/app1.png">
+      <p>App 1</p>
     </div>
 
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/minecraft.html')">
-      <img src="images/minecraft.png">
-      <div class="game-title">Minecraft 1.12.2</div>
+    <div class="game-card" data-type="app" data-category="story" onclick="launchApp('apps/app2.html')">
+      <img src="images/app2.png">
+      <p>App 2</p>
     </div>
 
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/pizzatower.html')">
-      <img src="images/pizzatower.png">
-      <div class="game-title">Pizza Tower</div>
+    <div class="game-card" data-type="app" data-category="puzzle" onclick="launchApp('apps/app3.html')">
+      <img src="images/app3.png">
+      <p>App 3</p>
     </div>
 
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/cuphead.html')">
-      <img src="images/Cuphead.png">
-      <div class="game-title">Cuphead</div>
+    <div class="game-card" data-type="app" data-category="action" onclick="launchApp('apps/app4.html')">
+      <img src="images/app4.png">
+      <p>App 4</p>
     </div>
 
-    <div class="card game-card" data-type="game" data-category="puzzle" onclick="launchGame('games/amaze.html')">
-      <img src="images/Amaze.png">
-      <div class="game-title">Amaze</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="story" onclick="launchGame('games/fnaf1.html')">
-      <img src="images/fnaf1.png">
-      <div class="game-title">FNAF 1</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/buckshotroulette.html')">
-      <img src="images/buckshotroulette.png">
-      <div class="game-title">Buckshot Roulette</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="story" onclick="launchGame('games/omori.html')">
-      <img src="images/omori.png">
-      <div class="game-title">OMORI</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/basketrandom.html')">
-      <img src="images/basketrandom.png">
-      <div class="game-title">Basket Random</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/bankrobbery2.html')">
-      <img src="images/bankrobbery2.png">
-      <div class="game-title">Bank Robbery 2</div>
-    </div>
-
-    <!-- Remaining placeholders -->
-    <div class="card game-card" data-type="game" data-category="puzzle" onclick="launchGame('games/game11.html')">
-      <img src="images/game11.png"><div class="game-title">Game 11</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="puzzle" onclick="launchGame('games/game12.html')">
-      <img src="images/game12.png"><div class="game-title">Game 12</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="story" onclick="launchGame('games/game13.html')">
-      <img src="images/game13.png"><div class="game-title">Game 13</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/game14.html')">
-      <img src="images/game14.png"><div class="game-title">Game 14</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/game15.html')">
-      <img src="images/game15.png"><div class="game-title">Game 15</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="puzzle" onclick="launchGame('games/game16.html')">
-      <img src="images/game16.png"><div class="game-title">Game 16</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="story" onclick="launchGame('games/game17.html')">
-      <img src="images/game17.png"><div class="game-title">Game 17</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="action" onclick="launchGame('games/game18.html')">
-      <img src="images/game18.png"><div class="game-title">Game 18</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="puzzle" onclick="launchGame('games/game19.html')">
-      <img src="images/game19.png"><div class="game-title">Game 19</div>
-    </div>
-
-    <div class="card game-card" data-type="game" data-category="story" onclick="launchGame('games/game20.html')">
-      <img src="images/game20.png"><div class="game-title">Game 20</div>
+    <div class="game-card" data-type="app" data-category="story" onclick="launchApp('apps/app5.html')">
+      <img src="images/app5.png">
+      <p>App 5</p>
     </div>
 
   </div>
