@@ -6,6 +6,7 @@
 </head>
 <body>
 
+<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <h2>PRTY</h2>
   <a href="index.html">Home</a>
@@ -18,35 +19,36 @@
 
 <button class="toggle" onclick="toggleSidebar()">☰</button>
 
+<!-- MAIN CONTENT -->
 <div class="main">
-  <h1 class="page-title">Apps</h1>
+  <h1 class="page-title">📱 Apps</h1>
 
-  <!-- App Grid -->
-  <div class="game-grid">
+  <!-- Apps Grid -->
+  <div class="grid">
 
-    <div class="game-card" data-type="app" data-category="action" onclick="launchApp('apps/app1.html')">
-      <img src="images/chatgpt.jpg>
-      <p>App 1</p>
+    <div class="card game-card" data-type="app" onclick="launchApp('apps/app1.html')">
+      <img src="images/app1.png" alt="App 1">
+      <div class="game-title">App 1</div>
     </div>
 
-    <div class="game-card" data-type="app" data-category="story" onclick="launchApp('apps/app2.html')">
-      <img src="images/app2.png">
-      <p>App 2</p>
+    <div class="card game-card" data-type="app" onclick="launchApp('apps/app2.html')">
+      <img src="images/app2.png" alt="App 2">
+      <div class="game-title">App 2</div>
     </div>
 
-    <div class="game-card" data-type="app" data-category="puzzle" onclick="launchApp('apps/app3.html')">
-      <img src="images/app3.png">
-      <p>App 3</p>
+    <div class="card game-card" data-type="app" onclick="launchApp('apps/app3.html')">
+      <img src="images/app3.png" alt="App 3">
+      <div class="game-title">App 3</div>
     </div>
 
-    <div class="game-card" data-type="app" data-category="action" onclick="launchApp('apps/app4.html')">
-      <img src="images/app4.png">
-      <p>App 4</p>
+    <div class="card game-card" data-type="app" onclick="launchApp('apps/app4.html')">
+      <img src="images/app4.png" alt="App 4">
+      <div class="game-title">App 4</div>
     </div>
 
-    <div class="game-card" data-type="app" data-category="story" onclick="launchApp('apps/app5.html')">
-      <img src="images/app5.png">
-      <p>App 5</p>
+    <div class="card game-card" data-type="app" onclick="launchApp('apps/app5.html')">
+      <img src="images/app5.png" alt="App 5">
+      <div class="game-title">App 5</div>
     </div>
 
   </div>
