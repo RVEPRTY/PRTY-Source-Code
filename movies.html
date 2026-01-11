@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PRTY - Movies</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+  <h2>PRTY</h2>
+  <a href="index.html">Home</a>
+  <a href="games.html">Games</a>
+  <a href="movies.html">Movies</a>
+  <a href="proxy.html">Proxy</a>
+  <a href="credits.html">Credits</a>
+</div>
+
+<button class="toggle" onclick="toggleSidebar()">☰</button>
+
+<div class="main">
+<h1 class="page-title">🎬 Movies (Google Drive)</h1>
+<div class="grid">
+<script>
+for(let i=1;i<=20;i++){
+  document.write(`<div class="card">Movie ${i}<br><small>Drive Link</small></div>`);
+}
+</script>
+</div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
