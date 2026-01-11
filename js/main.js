@@ -1,4 +1,4 @@
-/* ====== SIDEBAR TOGGLE ====== */
+* ====== SIDEBAR TOGGLE ====== */
 function toggleSidebar(){
   const sb = document.getElementById("sidebar");
   if(sb.style.left === "-250px"){
@@ -19,24 +19,8 @@ function updateClock(){
 setInterval(updateClock,1000);
 updateClock();
 
-/* ====== GAME LAUNCHER ====== */
+/* ====== FIXED GAME LAUNCHER ====== */
 function launchGame(url){
-  // Open a new blank window
-  const win = window.open("about:blank");
-
-  // Inject iframe with your game
-  win.document.write(`
-    <html>
-    <head>
-      <title>PRTY Game</title>
-      <style>
-        body{margin:0;background:black;}
-        iframe{border:none;width:100vw;height:100vh;}
-      </style>
-    </head>
-    <body>
-      <iframe src="${url}"></iframe>
-    </body>
-    </html>
-  `);
+  // Opens the game in a new tab (works locally and on Vercel)
+  window.open(url, "_blank");
 }
