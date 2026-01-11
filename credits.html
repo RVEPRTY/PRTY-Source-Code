@@ -3,27 +3,138 @@
 <head>
   <title>PRTY - Credits</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ===== Neon animated background for credits page ===== */
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1b1b2f, #23234a);
+      overflow-x: hidden;
+    }
+
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, #ff00cc33, transparent 20%),
+                  radial-gradient(circle at 80% 70%, #00ffff33, transparent 20%);
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 0;
+      animation: floatBG 10s infinite alternate;
+    }
+
+    @keyframes floatBG {
+      0% { background-position: 0% 0%, 100% 100%; }
+      100% { background-position: 10% 5%, 90% 95%; }
+    }
+
+    /* ===== Main container ===== */
+    .main {
+      position: relative;
+      z-index: 1;
+      margin-left: 240px;
+      padding: 20px;
+    }
+
+    .page-title {
+      font-size: 2.5em;
+      color: #00ffff;
+      text-shadow: 0 0 15px #ff00cc;
+      text-align: center;
+    }
+
+    /* ===== Credits grid ===== */
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .credit-card {
+      background: linear-gradient(145deg, #1b1b2f, #23234a);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255,0,255,0.4);
+      transition: 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .credit-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0,255,255,0.8);
+    }
+
+    .credit-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      object-fit: cover;
+      border: 2px solid #00ffff;
+    }
+
+    .credit-card h3 {
+      margin: 5px 0;
+      color: #00ffff;
+      text-shadow: 0 0 8px black;
+    }
+
+    .credit-card p {
+      margin: 0;
+      color: #fff;
+      font-size: 0.9em;
+    }
+
+    /* ===== Sidebar fix ===== */
+    .sidebar {
+      z-index: 2; /* above background animation */
+    }
+  </style>
 </head>
 <body>
 
-<div class="sidebar" id="sidebar">
-  <h2>PRTY</h2>
-  <a href="index.html">Home</a>
-  <a href="games.html">Games</a>
-  <a href="apps.html">Apps</a>
-  <a href="movies.html">Movies</a>
-  <a href="proxy.html">Proxy</a>
-  <a href="credits.html">Credits</a>
-</div>
+  <div class="background-animation"></div>
 
-<button class="toggle" onclick="toggleSidebar()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>PRTY</h2>
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="apps.html">Apps</a>
+    <a href="movies.html">Movies</a>
+    <a href="proxy.html">Proxy</a>
+    <a href="credits.html">Credits</a>
+  </div>
 
-<div class="main">
-<h1 class="page-title">🧾 Credits</h1>
-<p style="font-size:22px"><strong>Credits for the Website</strong><br>RVEPRTY- Developer, Owner, and Marketer😎<br>Games ported by gn-math (https://gn-math-t.github.io)<br>owered by Vercel<br>Want to be on these Credits, Join our Beta Tester or Join Early to our Discord!</p>
-</div>
+  <button class="toggle" onclick="toggleSidebar()">☰</button>
 
-<script src="js/main.js"></script>
+  <div class="main">
+    <h1 class="page-title">✨ Credits</h1>
+
+    <div class="credits-grid">
+      <div class="credit-card">
+        <img src="images/dev.png" alt="Developer">
+        <h3>RVEPRTY</h3>
+        <p>Developer / Designer</p>
+      </div>
+      <div class="credit-card">
+        <img src="images/assets.png" alt="Assets">
+        <h3>Open Source Assets</h3>
+        <p>Icons, Images, Sounds</p>
+      </div>
+      <div class="credit-card">
+        <img src="images/special.png" alt="Special Thanks">
+        <h3>Special Thanks</h3>
+        <p>Friends & Beta Testers</p>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
-
