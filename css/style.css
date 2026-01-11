@@ -99,3 +99,34 @@ body {
   font-size: 18px;
   font-weight: bold;
 }
+
+/* UPDATES SECTION */
+.updates-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.updates-section h2 {
+  font-size: 36px;
+  color: #ff00cc;
+  margin-bottom: 5px;
+}
+
+.updates-section .subtitle {
+  font-size: 20px;
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.updates-section .updates-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.updates-section .updates-list li {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
