@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRTY Admin Dashboard</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="dashboard-header">
+  <div>
+    <h1 id="greeting">Welcome</h1>
+    <p id="clock">Today is …</p>
+  </div>
+  <div class="top-buttons">
+    <button id="addTicketBtn">➕ Add</button>
+    <button id="catastrophicBtn">💥 Catastrophic Mode</button>
+  </div>
+</div>
+
+<div class="ticket-grid" id="ticketGrid"></div>
+
+<!-- Pending Deletions (Owner only) -->
+<div class="pending-deletions" id="pendingDeletions"></div>
+
+<!-- Add Ticket Popup -->
+<div class="popup" id="ticketPopup">
+  <div class="popup-content">
+    <h2>Add Ticket</h2>
+    <form id="ticketForm">
+      <label>Type:</label>
+      <select id="ticketType">
+        <option value="Bug">Bug</option>
+        <option value="Suggestion">Suggestion</option>
+      </select>
+      <label>Severity:</label>
+      <select id="ticketSeverity">
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+        <option value="Critical">Critical</option>
+      </select>
+      <label>Title:</label>
+      <input type="text" id="ticketTitle" required>
+      <label>Description:</label>
+      <textarea id="ticketDesc" rows="4" required></textarea>
+      <button type="submit">Submit</button>
+      <button type="button" id="closePopup">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<!-- Catastrophic Mode Overlay -->
+<div class="popup" id="catastrophicOverlay">
+  <div class="popup-content">
+    <h2>💥 Catastrophic Mode Active</h2>
+    <p>Admins, lock in! Current bug stats:</p>
+    <ul id="catastrophicStats"></ul>
+    <button id="closeCatastrophic">Exit Mode</button>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
