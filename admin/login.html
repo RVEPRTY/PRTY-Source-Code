@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRTY Admin Login</title>
-<link rel="stylesheet" href="admin.css">
+<title>PRTY Admin</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <div class="login-container">
-  <h1>🔧 Admin Panel</h1>
-  <form id="loginForm">
-    <input type="text" id="username" placeholder="Username" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-    <p id="loginError" class="error"></p>
-  </form>
+  <div class="login-box">
+    <h1>PRTY</h1>
+    <p>Admin Access</p>
+
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+    <p id="error"></p>
+
+    <div id="clock"></div>
+  </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
 <script src="auth.js"></script>
+
+<script>
+function updateClock(){
+  const d = new Date();
+  document.getElementById("clock").innerText =
+    d.toLocaleDateString() + " " + d.toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+</script>
+
 </body>
 </html>
