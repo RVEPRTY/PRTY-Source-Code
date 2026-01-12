@@ -1,65 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRTY Admin Dashboard</title>
-<link rel="stylesheet" href="admin.css">
+  <title>PRTY Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="dashboard-header">
+
+<div class="topbar">
+  <h2 id="welcome">Welcome</h2>
   <div>
-    <h1 id="greeting">Welcome</h1>
-    <p id="clock">Today is …</p>
-  </div>
-  <div class="top-buttons">
-    <button id="addTicketBtn">➕ Add</button>
-    <button id="catastrophicBtn">💥 Catastrophic Mode</button>
+    <span id="taskCounter">0 tasks</span>
+    <button onclick="openAddTicket()">➕ Add Ticket</button>
+    <button id="catModeBtn" onclick="toggleCatastrophicMode()">💥 Catastrophic Mode</button>
+    <button onclick="logout()">Logout</button>
   </div>
 </div>
 
-<div class="ticket-grid" id="ticketGrid"></div>
-
-<!-- Pending Deletions (Owner only) -->
-<div class="pending-deletions" id="pendingDeletions"></div>
+<div class="dashboard">
+  <div id="ticketsGrid" class="tickets-grid"></div>
+</div>
 
 <!-- Add Ticket Popup -->
-<div class="popup" id="ticketPopup">
-  <div class="popup-content">
-    <h2>Add Ticket</h2>
-    <form id="ticketForm">
-      <label>Type:</label>
-      <select id="ticketType">
-        <option value="Bug">Bug</option>
-        <option value="Suggestion">Suggestion</option>
-      </select>
-      <label>Severity:</label>
-      <select id="ticketSeverity">
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-        <option value="Critical">Critical</option>
-      </select>
-      <label>Title:</label>
-      <input type="text" id="ticketTitle" required>
-      <label>Description:</label>
-      <textarea id="ticketDesc" rows="4" required></textarea>
-      <button type="submit">Submit</button>
-      <button type="button" id="closePopup">Cancel</button>
-    </form>
-  </div>
+<div id="addTicketPopup" class="popup">
+  <h3>Add Ticket</h3>
+  <select id="ticketType">
+    <option>Bug</option>
+    <option>Suggestion</option>
+  </select>
+  <select id="ticketSeverity">
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+    <option>Critical</option>
+  </select>
+  <input id="ticketTitle" placeholder="Title">
+  <textarea id="ticketDesc" placeholder="Description"></textarea>
+  <button onclick="submitTicket()">Submit</button>
+  <button onclick="closeAddTicket()">Cancel</button>
 </div>
 
 <!-- Catastrophic Mode Overlay -->
-<div class="popup" id="catastrophicOverlay">
-  <div class="popup-content">
-    <h2>💥 Catastrophic Mode Active</h2>
-    <p>Admins, lock in! Current bug stats:</p>
-    <ul id="catastrophicStats"></ul>
-    <button id="closeCatastrophic">Exit Mode</button>
-  </div>
+<div id="catOverlay" class="cat-overlay">
+  <h2>💥 Catastrophic Mode</h2>
+  <p id="catStats"></p>
+  <button onclick="toggleCatastrophicMode()">Close</button>
 </div>
 
-<script src="admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+<script src="auth.js"></script>
+<script>
+  loadDashboard();
+</script>
 </body>
 </html>
