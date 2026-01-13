@@ -1,3 +1,7 @@
 # PRTY Source Code
 
-Only can be editted by rveprty. or rveprty.main
+This is the a main code of the website "PRTY". If anyone wants to use this code, you can fork it, this code IS open source. This can be deployed.
+
+DM either rveprty. or rveprty.main if you have any questions.
+
+-RVEPRTY
