@@ -27,3 +27,9 @@ function launchGame(url){
     window.location.href = url;
   }
 }
+
+// Use chosen default launch mode
+function launchPRTY(url) {
+    const mode = localStorage.getItem("launchMode") || "about:blank";
+    window.open(url, mode);
+}
