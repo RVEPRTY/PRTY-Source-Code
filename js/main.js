@@ -33,3 +33,39 @@ function launchPRTY(url) {
     const mode = localStorage.getItem("launchMode") || "about:blank";
     window.open(url, mode);
 }
+
+// ⭐ PRTY Activity Bar Logic
+const prtyActivityMessages = [
+  "Someone is definitely playing games rn 🎮",
+  "Movies page getting love 🍿",
+  "PRTY is alive and kicking",
+  "Bug Hunters probably cooking 🐛",
+  "GG chat",
+  "AfterPRTY energy detected ✨",
+  "If you're here, you're already bored",
+  "This site exists. Somehow.",
+  "Mr Beast still hasn't sent money"
+];
+
+function updatePrtyActivity() {
+  const textEl = document.getElementById("prty-activity-text");
+  if (!textEl) return;
+
+  const random =
+    prtyActivityMessages[
+      Math.floor(Math.random() * prtyActivityMessages.length)
+    ];
+
+  textEl.style.opacity = 0;
+  setTimeout(() => {
+    textEl.textContent = random;
+    textEl.style.opacity = 0.9;
+  }, 300);
+}
+
+// Initial load
+updatePrtyActivity();
+
+// Auto update every 15 seconds
+setInterval(updatePrtyActivity, 15000);
+
