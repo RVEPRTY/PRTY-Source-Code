@@ -118,3 +118,70 @@ window.addEventListener('load', () => {
   setTimeout(() => loader.style.display = 'none', 500);
 });
 
+/* APPLY SAVED SETTINGS */
+window.onload = () => {
+  const theme = localStorage.getItem("prty-theme");
+  const title = localStorage.getItem("cloakTitle");
+  const icon = localStorage.getItem("cloakIcon");
+
+  if (theme) document.body.className = theme;
+  if (title) document.title = title;
+
+  if (icon) {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    link.href = icon;
+  }
+};
+
+/* PANIC SHORTCUT WITH FAKE LOADING */
+let panicTimer = null;
+let panicSeconds = 3;
+
+document.addEventListener("keydown", function (e) {
+  if (e.ctrlKey && e.key.toLowerCase() === "l") {
+    e.preventDefault();
+    startPanic();
+  }
+});
+
+function startPanic() {
+  const overlay = document.getElementById("panic-overlay");
+  if (!overlay) return;
+
+  panicSeconds = 3;
+  overlay.style.display = "flex";
+  updateCountdown();
+
+  panicTimer = setInterval(() => {
+    panicSeconds--;
+    updateCountdown();
+    if (panicSeconds <= 0) {
+      clearInterval(panicTimer);
+      redirectPanic();
+    }
+  }, 1000);
+}
+
+function updateCountdown() {
+  const text = document.getElementById("panic-countdown");
+  if (text) text.innerText = `Redirecting in ${panicSeconds}...`;
+}
+
+function cancelPanic() {
+  clearInterval(panicTimer);
+  document.getElementById("panic-overlay").style.display = "none";
+}
+
+function redirectPanic() {
+  const panicURL =
+    localStorage.getItem("panicURL") ||
+    "https://www.classlink.com";
+
+  window.location.replace(panicURL);
+}
+
