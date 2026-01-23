@@ -1,97 +1,64 @@
-// Get all elements
-const theme = document.getElementById("theme");
-const launchMode = document.getElementById("launchMode");
-const lowPower = document.getElementById("lowPower");
-const notifications = document.getElementById("notifications");
-
-const cloakGoogle = document.getElementById("cloakGoogle");
-const cloakClassroom = document.getElementById("cloakClassroom");
-const cloakClasslink = document.getElementById("cloakClasslink");
-const cloakCanvas = document.getElementById("cloakCanvas");
-const cloakClever = document.getElementById("cloakClever");
-const fakeTitle = document.getElementById("fakeTitle");
-
-const resetAll = document.getElementById("resetAll");
-const prtyMode = document.getElementById("prtyMode");
-const focusMode = document.getElementById("focusMode");
-const movieNightMode = document.getElementById("movieNightMode");
-
-// Load saved settings
-window.addEventListener("DOMContentLoaded", () => {
-    theme.value = localStorage.getItem("theme") || "default";
-    launchMode.value = localStorage.getItem("launchMode") || "about:blank";
-    lowPower.checked = localStorage.getItem("lowPower") === "true";
-    notifications.checked = localStorage.getItem("notifications") === "true";
-
-    cloakGoogle.checked = localStorage.getItem("cloakGoogle") === "true";
-    cloakClassroom.checked = localStorage.getItem("cloakClassroom") === "true";
-    cloakClasslink.checked = localStorage.getItem("cloakClasslink") === "true";
-    cloakCanvas.checked = localStorage.getItem("cloakCanvas") === "true";
-    cloakClever.checked = localStorage.getItem("cloakClever") === "true";
-    fakeTitle.value = localStorage.getItem("fakeTitle") || "";
-
-    prtyMode.checked = localStorage.getItem("prtyMode") === "true";
-    focusMode.checked = localStorage.getItem("focusMode") === "true";
-    movieNightMode.checked = localStorage.getItem("movieNightMode") === "true";
-
-    applySettings();
-});
-
-// Save settings when changed
-[theme, launchMode, lowPower, notifications, cloakGoogle, cloakClassroom, cloakClasslink, cloakCanvas, cloakClever, fakeTitle, prtyMode, focusMode, movieNightMode].forEach(el => {
-    el.addEventListener("change", () => {
-        saveSettings();
-        applySettings();
-    });
-});
-
-// Reset all
-resetAll.addEventListener("click", () => {
-    localStorage.clear();
-    location.reload();
-});
-
-// Save function
-function saveSettings() {
-    localStorage.setItem("theme", theme.value);
-    localStorage.setItem("launchMode", launchMode.value);
-    localStorage.setItem("lowPower", lowPower.checked);
-    localStorage.setItem("notifications", notifications.checked);
-
-    localStorage.setItem("cloakGoogle", cloakGoogle.checked);
-    localStorage.setItem("cloakClassroom", cloakClassroom.checked);
-    localStorage.setItem("cloakClasslink", cloakClasslink.checked);
-    localStorage.setItem("cloakCanvas", cloakCanvas.checked);
-    localStorage.setItem("cloakClever", cloakClever.checked);
-    localStorage.setItem("fakeTitle", fakeTitle.value);
-
-    localStorage.setItem("prtyMode", prtyMode.checked);
-    localStorage.setItem("focusMode", focusMode.checked);
-    localStorage.setItem("movieNightMode", movieNightMode.checked);
+/* THEMES */
+function setTheme(theme) {
+  localStorage.setItem("prty-theme", theme);
+  document.body.className = theme;
 }
 
-// Apply settings live
-function applySettings() {
-    // Theme
-    document.body.className = theme.value;
+/* CLOAK PRESETS */
+function cloakPreset(type) {
+  const presets = {
+    ClassLink: {
+      title: "ClassLink",
+      icon: "https://www.classlink.com/favicon.ico"
+    },
+    Google: {
+      title: "Google",
+      icon: "https://www.google.com/favicon.ico"
+    },
+    Canvas: {
+      title: "Canvas",
+      icon: "https://canvas.instructure.com/favicon.ico"
+    }
+  };
 
-    // Fake title
-    if(fakeTitle.value) document.title = fakeTitle.value;
-    else document.title = "PRTY";
+  const p = presets[type];
+  applyCloak(p.title, p.icon);
+}
 
-    // PRTY Mode
-    if(prtyMode.checked) document.body.style.background = "linear-gradient(45deg, #7a4cff, #ff4a6b, #4aff9e)";
-    else document.body.style.background = "#0b0b0f";
+/* CUSTOM CLOAK */
+function setCustomTitle(title) {
+  localStorage.setItem("cloakTitle", title);
+  document.title = title;
+}
 
-    // Focus Mode
-    if(focusMode.checked) document.querySelector("header").style.display = "none";
-    else document.querySelector("header").style.display = "block";
+function setCustomIcon(url) {
+  localStorage.setItem("cloakIcon", url);
+  setFavicon(url);
+}
 
-    // Movie Night Mode
-    if(movieNightMode.checked) document.body.style.filter = "brightness(0.85)";
-    else document.body.style.filter = "brightness(1)";
+function applyCloak(title, icon) {
+  document.title = title;
+  setFavicon(icon);
+  localStorage.setItem("cloakTitle", title);
+  localStorage.setItem("cloakIcon", icon);
+}
 
-    // Low Power Mode
-    if(lowPower.checked) document.body.style.transition = "none";
-    else document.body.style.transition = "0.3s ease";
+function setFavicon(url) {
+  let link = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement("link");
+    link.rel = "icon";
+    document.head.appendChild(link);
+  }
+  link.href = url;
+}
+
+/* REPORT */
+function reportIssue() {
+  window.open("https://forms.gle/REPLACE_WITH_YOUR_FORM", "_blank");
+}
+
+/* FUN BUTTON */
+function doNothing() {
+  alert("bro really thought 💀");
 }
