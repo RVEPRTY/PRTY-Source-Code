@@ -533,32 +533,24 @@ body.prty {
 }
 
 /* =========================
-   PROXY APP — THE FINAL SOLUTION (very tuff)
+   ABSOLUTE PROXY MODE
    ========================= */
 
 body.proxy-page {
+  margin: 0;
   overflow: hidden;
 }
 
-body.proxy-page .main {
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-}
-
-body.proxy-page .proxy-app {
+/* FORCE IFRAME TO FILL SCREEN */
+#proxy-iframe {
   position: fixed;
   top: 0;
-  left: 220px; /* sidebar width — adjust if needed */
+  left: 220px; /* SIDEBAR WIDTH — adjust if needed */
   right: 0;
   bottom: 0;
-  z-index: 5;
-}
-
-body.proxy-page .proxy-app iframe {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: auto;
   border: none;
-  display: block;
   background: #000;
+  z-index: 2;
 }
