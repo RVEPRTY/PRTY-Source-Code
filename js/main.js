@@ -185,3 +185,8 @@ function redirectPanic() {
   window.location.replace(panicURL);
 }
 
+function launchProxy() {
+  const win = window.open("about:blank");
+  win.location.href = "https://prty-learning.vercel.app";
+}
+
