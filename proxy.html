@@ -4,6 +4,31 @@
   <title>PRTY Proxy</title>
   <link rel="icon" type="image/png" href="assets/canvascloak.png">
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Fullscreen iframe behind everything */
+    .proxy-frame {
+      position: fixed;
+      inset: 0; /* shorthand for top:0; left:0; right:0; bottom:0 */
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      margin: 0;
+      padding: 0;
+      z-index: 1; /* stays behind sidebar */
+    }
+
+    /* Force sidebar + toggle above iframe */
+    .sidebar {
+      position: fixed; /* ensures it stays on top */
+      z-index: 9999;
+    }
+
+    .toggle {
+      position: fixed;
+      z-index: 10000; /* above sidebar */
+    }
+  </style>
 </head>
 
 <body class="proxy-page">
@@ -13,16 +38,23 @@
   <h2>PRTY</h2>
   <a href="index.html">Home</a>
   <a href="games.html">Games</a>
-  <a href="apps.html">Apps</a>
-  <a href="movies.html">Movies</a>
-  <a href="manga.html">Manga</a>
-  <a href="proxy.html">Proxy</a>
+  <a href="apps.html">Apps (50%)</a>
+  <a href="movies.html">Movies (Google Drive)</a>
+  <a href="manga.html">Manga & Books (Google Drive)</a>
+  <a href="proxy.html" class="active">Proxy</a>
   <a href="credits.html">Credits</a>
   <a class="discord-btn" href="https://discord.gg/MdNsPVTJGv" target="_blank">Discord</a>
-  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 </div>
 
-<p>Use https://prty-learning.b-cdn.net</p>
+<button class="toggle" onclick="toggleSidebar()">☰</button>
+
+<!-- FULLSCREEN IFRAME -->
+<iframe 
+  src="https://prty-learning.b-cdn.net"
+  class="proxy-frame"
+  allow="fullscreen"
+  loading="lazy">
+</iframe>
 
 <script src="js/main.js"></script>
 </body>
