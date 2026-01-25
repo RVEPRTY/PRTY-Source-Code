@@ -65,7 +65,7 @@ body {
 
 /* CLOSED STATE */
 .sidebar.closed {
-  transform: translateX(-180px);
+  transform: translateX(-220px);
 }
 
 /* ===== SIDEBAR TOGGLE BUTTON ===== */
