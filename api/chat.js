@@ -6,35 +6,26 @@ export default async function handler(req, res) {
   try {
     const { message } = req.body;
 
-    if (!message || typeof message !== "string") {
+    if (!message) {
       return res.status(200).json({ reply: "Say something first." });
     }
 
-    // 🔁 REPLACE THIS with your Cloudflare Worker URL
-    const CLOUDFLARE_AI_URL = "https://prty-ai.luisofficialbusiness.workers.dev/";
-
-    const response = await fetch(CLOUDFLARE_AI_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message })
-    });
+    const response = await fetch(
+      "https://prty-ai.luisofficialbusiness.workers.dev",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      }
+    );
 
     const data = await response.json();
 
-    if (!data || !data.reply) {
-      return res.status(200).json({
-        reply: "PRTY AI is thinking too hard rn 😵‍💫"
-      });
-    }
-
-    return res.status(200).json({ reply: data.reply });
-
-  } catch (err) {
     return res.status(200).json({
-      reply: "PRTY AI is offline rn 😴"
+      reply: data?.reply || "PRTY AI is tired rn 😴"
     });
+
+  } catch {
+    return res.status(200).json({ reply: "PRTY AI is tired rn 😴" });
   }
 }
-
