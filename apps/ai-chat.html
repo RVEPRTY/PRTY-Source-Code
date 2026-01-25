@@ -75,7 +75,7 @@ button {
 <body>
 
 <div class="ai-box">
-  <div class="header">🤖 PRTY AI (Offline)</div>
+  <div class="header">🤖 PRTY AI</div>
   <div class="chat" id="chat"></div>
   <div class="input">
     <input id="input" placeholder="Say something..." onkeydown="if(event.key==='Enter')send()">
@@ -86,67 +86,71 @@ button {
 <script>
 const chat = document.getElementById("chat");
 
-const responses = {
-  hello: [
-    "yo 👋",
-    "hey there",
-    "what’s up",
-    "hi hi"
-  ],
-  bored: [
-    "yeah same 😭",
-    "try a game",
-    "PRTY exists for a reason yk",
-    "sounds like a you problem ngl"
-  ],
-  prty: [
-    "PRTY >>> everything else",
-    "you already know PRTY clears",
-    "best site fr"
-  ],
-  help: [
-    "what do you need",
-    "I gotchu",
-    "say less"
-  ],
+// Fake AI fallback responses
+const fakeResponses = {
+  hello: ["yo 👋", "hey", "sup"],
+  bored: ["yeah same 😭", "play a game", "PRTY exists for a reason"],
+  help: ["what you need", "say less", "I gotchu"],
   default: [
-    "idk but that’s wild",
     "real.",
-    "interesting take",
-    "I hear you",
-    "fr?"
+    "interesting...",
+    "idk but that’s wild",
+    "fr?",
+    "go on 👀"
   ]
 };
 
-function botReply(text) {
-  let key = "default";
-  if (text.includes("hi") || text.includes("hello")) key = "hello";
-  if (text.includes("bored")) key = "bored";
-  if (text.includes("prty")) key = "prty";
-  if (text.includes("help")) key = "help";
-
-  const reply = responses[key][Math.floor(Math.random()*responses[key].length)];
-
-  setTimeout(() => {
-    addMsg("PRTY AI", reply, "bot");
-  }, 600);
+function detect(text) {
+  if (text.includes("hi") || text.includes("hello")) return "hello";
+  if (text.includes("bored")) return "bored";
+  if (text.includes("help")) return "help";
+  return "default";
 }
 
-function addMsg(user, text, cls) {
+function fakeReply(text) {
+  const key = detect(text);
+  const pool = fakeResponses[key];
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function addMsg(name, text, cls) {
   const div = document.createElement("div");
   div.className = "msg " + cls;
-  div.innerText = `${user}: ${text}`;
+  div.innerText = `${name}: ${text}`;
   chat.appendChild(div);
   chat.scrollTop = chat.scrollHeight;
 }
 
-function send() {
+async function send() {
   const input = document.getElementById("input");
-  const text = input.value.trim().toLowerCase();
+  const text = input.value.trim();
   if (!text) return;
+
   addMsg("You", text, "user");
   input.value = "";
-  botReply(text);
+
+  addMsg("PRTY AI", "typing...", "bot");
+
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text.toLowerCase() })
+    });
+
+    const data = await res.json();
+    chat.lastChild.remove();
+
+    if (data.reply === "__FALLBACK__") {
+      addMsg("PRTY AI", fakeReply(text.toLowerCase()), "bot");
+    } else {
+      addMsg("PRTY AI", data.reply, "bot");
+    }
+
+  } catch {
+    chat.lastChild.remove();
+    addMsg("PRTY AI", fakeReply(text.toLowerCase()), "bot");
+  }
 }
 </script>
 
