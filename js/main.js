@@ -34,40 +34,75 @@ function launchPRTY(url) {
     window.open(url, mode);
 }
 
-// ⭐ PRTY Activity Bar Logic
-const prtyActivityMessages = [
-  "Supercalifragicex, wait i forgot the rest",
-  "Why are you so bored blud",
-  "PRTY DOES NOT WORK, jk",
-  "Bug Hunters probably cooking 🐛",
-  "GG chat",
-  "AfterPRTY energy detected ✨",
-  "If you're here, you're already bored",
-  "This site exists. Somehow.",
-  "hola amigo"
-];
+/* ===== PRTY ACTIVITY BAR v2 (INDEX ONLY) ===== */
 
-function updatePrtyActivity() {
-  const textEl = document.getElementById("prty-activity-text");
-  if (!textEl) return;
+(function () {
+  // Run ONLY on index.html
+  if (!window.location.pathname.endsWith("index.html") &&
+      !window.location.pathname.endsWith("/")) return;
 
-  const random =
-    prtyActivityMessages[
-      Math.floor(Math.random() * prtyActivityMessages.length)
-    ];
+  const activityText = document.getElementById("prty-activity-text");
+  if (!activityText) return;
 
-  textEl.style.opacity = 0;
-  setTimeout(() => {
-    textEl.textContent = random;
-    textEl.style.opacity = 0.9;
-  }, 300);
-}
+  /* 🔧 MANUAL COUNTS (EDIT THESE) */
+  const PRTY_STATS = {
+    games: 60,
+    movies: 25,
+    manga: 19
+  };
 
-// Initial load
-updatePrtyActivity();
+  const hour = new Date().getHours();
 
-// Auto update every 15 seconds
-setInterval(updatePrtyActivity, 15000);
+  const morningMessages = [
+    "☀️ good morning, PRTY is awake",
+    "☀️ early grind?",
+    "☀️ starting the day with PRTY"
+  ];
+
+  const nightMessages = [
+    "🌙 late night PRTY session",
+    "🌙 go to sleep (or don’t)",
+    "🌙 night mode energy"
+  ];
+
+  const generalMessages = [
+    "🟢 PRTY is online",
+    "🚀 PRTY is running smooth",
+    "🎉 welcome to PRTY",
+    "if you're reading this, hi"
+  ];
+
+  const statMessages = [
+    `🎮 ${PRTY_STATS.games} games available`,
+    `🎬 ${PRTY_STATS.movies} movies ready`,
+    `📚 ${PRTY_STATS.manga} manga & books`
+  ];
+
+  function getActivityMessage() {
+    let pool = [...generalMessages, ...statMessages];
+
+    if (hour >= 6 && hour < 12) pool.push(...morningMessages);
+    if (hour >= 21 || hour < 5) pool.push(...nightMessages);
+
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function updateActivityBar() {
+    activityText.style.opacity = "0";
+
+    setTimeout(() => {
+      activityText.textContent = getActivityMessage();
+      activityText.style.opacity = "1";
+    }, 200);
+  }
+
+  // Initial load
+  updateActivityBar();
+
+  // Rotate every 12 seconds
+  setInterval(updateActivityBar, 12000);
+})();
+
 
 // Panic Mode Shortcut: CTRL + L
 document.addEventListener('keydown', function(e) {
