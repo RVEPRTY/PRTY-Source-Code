@@ -1,270 +1,224 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>PRTY Cheat Sheet</title>
-  <style>
-    body {
-      margin: 0;
-      background: #0b0f1a;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      height: 100vh;
-    }
+<meta charset="UTF-8">
+<title>PRTY Cheat Sheet</title>
+<style>
+:root {
+  --bg: #0e0e11;
+  --panel: #151522;
+  --accent: #00ffff;
+  --accent2: #ff00cc;
+  --text: #ffffff;
+}
 
-    /* LEFT SIDEBAR */
-    .sidebar {
-      width: 260px;
-      background: #141a2e;
-      padding: 12px;
-      overflow-y: auto;
-      border-right: 1px solid #1f2540;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0e0e11, #111827);
+  color: var(--text);
+}
 
-    .sidebar h3 {
-      margin: 10px 0 6px;
-      font-size: 0.85rem;
-      opacity: 0.7;
-    }
+/* Header */
+header {
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent2);
+}
 
-    .sidebar button {
-      width: 100%;
-      margin-bottom: 6px;
-      padding: 8px;
-      border: none;
-      background: #1f2540;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 6px;
-      font-size: 0.85rem;
-    }
+/* Search */
+.search-container {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+}
 
-    .sidebar button:hover {
-      background: #2a3170;
-    }
+#search {
+  width: 80%;
+  max-width: 600px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background: #1f1f2f;
+  color: white;
+  box-shadow: 0 0 15px rgba(0,255,255,0.2);
+}
 
-    .danger {
-      background: #c62828 !important;
-    }
+/* Sections */
+.section {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  background: var(--panel);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
 
-    /* MAIN AREA */
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+.section-header {
+  padding: 15px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, #1b1b2f, #23234a);
+  color: var(--accent);
+}
 
-    /* TABS BAR */
-    .tabs {
-      display: flex;
-      background: #0f1325;
-      border-bottom: 1px solid #1f2540;
-      overflow-x: auto;
-    }
+.section-content {
+  padding: 15px;
+  display: none;
+}
 
-    .tab {
-      padding: 8px 12px;
-      cursor: pointer;
-      background: #141a2e;
-      border-right: 1px solid #1f2540;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-    }
+.section-content ul {
+  list-style: none;
+  padding: 0;
+}
 
-    .tab.active {
-      background: #1f2540;
-    }
+.section-content li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.95rem;
+}
 
-    .tab span {
-      font-size: 0.85rem;
-    }
+/* Show */
+.section.open .section-content {
+  display: block;
+}
 
-    .tab .close {
-      font-size: 0.8rem;
-      opacity: 0.6;
-      cursor: pointer;
-    }
-
-    .tab .close:hover {
-      opacity: 1;
-    }
-
-    .add-tab {
-      padding: 8px 12px;
-      cursor: pointer;
-      background: #141a2e;
-      font-weight: bold;
-    }
-
-    /* EDITOR */
-    textarea {
-      flex: 1;
-      background: #0b0f1a;
-      color: #fff;
-      border: none;
-      padding: 18px;
-      font-size: 1rem;
-      resize: none;
-      outline: none;
-      line-height: 1.5;
-    }
-
-    input[type="file"] {
-      display: none;
-    }
-  </style>
+/* Footer */
+footer {
+  text-align: center;
+  opacity: 0.6;
+  padding: 20px;
+  font-size: 0.85rem;
+}
+</style>
 </head>
+
 <body>
 
-<!-- PRESETS SIDEBAR -->
-<div class="sidebar">
-  <h3>Math</h3>
-  <button onclick="loadPreset('algebra')">Algebra</button>
-  <button onclick="loadPreset('geometry')">Geometry</button>
-  <button onclick="loadPreset('trig')">Trigonometry</button>
+<header>📘 PRTY Cheat Sheet</header>
 
-  <h3>Physics</h3>
-  <button onclick="loadPreset('motion')">Motion</button>
-  <button onclick="loadPreset('electric')">Electricity</button>
-
-  <h3>Chemistry</h3>
-  <button onclick="loadPreset('periodic')">Periodic Trends</button>
-  <button onclick="loadPreset('gas')">Gas Laws</button>
-
-  <h3>Tools</h3>
-  <button onclick="exportTab()">Export Current Tab</button>
-  <button onclick="triggerImport()">Import Into Tab</button>
-  <button class="danger" onclick="deleteTab()">Delete Tab</button>
-
-  <input type="file" id="fileInput" accept=".txt">
+<div class="search-container">
+  <input id="search" placeholder="Search cheats (math, html, http, shortcuts...)">
 </div>
 
-<!-- MAIN -->
-<div class="main">
-  <div class="tabs" id="tabs"></div>
-  <textarea id="editor" placeholder="Start typing..."></textarea>
+<!-- SCHOOL -->
+<div class="section">
+  <div class="section-header">🏫 School</div>
+  <div class="section-content">
+    <ul>
+      <li>PEMDAS – Order of Operations</li>
+      <li>Pythagorean Theorem: a² + b² = c²</li>
+      <li>Area: rectangle = l×w, circle = πr²</li>
+      <li>Volume: cube = s³, cylinder = πr²h</li>
+      <li>Mean / Median / Mode</li>
+      <li>Distance = Rate × Time</li>
+      <li>Fraction ↔ Decimal ↔ Percent</li>
+      <li>Periodic Table basics</li>
+      <li>Metric prefixes (kilo → nano)</li>
+      <li>Temperature: °C ↔ °F ↔ K</li>
+    </ul>
+  </div>
 </div>
+
+<!-- CODING -->
+<div class="section">
+  <div class="section-header">💻 Coding</div>
+  <div class="section-content">
+    <ul>
+      <li>HTML structure: html → head → body</li>
+      <li>HTML tags: div, span, a, img, input</li>
+      <li>CSS box model: margin, border, padding</li>
+      <li>CSS units: px, %, em, rem, vh, vw</li>
+      <li>Flexbox: justify-content, align-items</li>
+      <li>JS variables: let, const</li>
+      <li>JS arrays & objects</li>
+      <li>DOM: document.querySelector()</li>
+      <li>localStorage.getItem / setItem</li>
+      <li>Common JS errors (undefined, null)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- INTERNET -->
+<div class="section">
+  <div class="section-header">🌐 Internet</div>
+  <div class="section-content">
+    <ul>
+      <li>HTTP vs HTTPS</li>
+      <li>DNS = Domain Name System</li>
+      <li>IP address basics</li>
+      <li>CDN = Content Delivery Network</li>
+      <li>Cookies vs cache</li>
+      <li>VPN vs Proxy</li>
+      <li>HTTP status codes:</li>
+      <li>200 OK</li>
+      <li>301 Redirect</li>
+      <li>404 Not Found</li>
+      <li>429 Rate Limited</li>
+      <li>500 Server Error</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SHORTCUTS -->
+<div class="section">
+  <div class="section-header">⌨️ Keyboard Shortcuts</div>
+  <div class="section-content">
+    <ul>
+      <li>Ctrl + C / V / X – Copy / Paste / Cut</li>
+      <li>Ctrl + Z / Y – Undo / Redo</li>
+      <li>Ctrl + T – New tab</li>
+      <li>Ctrl + W – Close tab</li>
+      <li>Ctrl + Shift + T – Reopen tab</li>
+      <li>Ctrl + R – Refresh</li>
+      <li>Ctrl + Shift + I – DevTools</li>
+    </ul>
+  </div>
+</div>
+
+<!-- POWER USER -->
+<div class="section">
+  <div class="section-header">🔥 Power-User</div>
+  <div class="section-content">
+    <ul>
+      <li>Binary ↔ Decimal</li>
+      <li>ASCII table</li>
+      <li>File extensions (.html, .js, .png)</li>
+      <li>Resolution & aspect ratios</li>
+      <li>FPS vs refresh rate</li>
+      <li>Latency vs bandwidth</li>
+    </ul>
+  </div>
+</div>
+
+<footer>PRTY Cheat Sheet • Offline • Fast • No Tracking</footer>
 
 <script>
-/* ===== DATA ===== */
-let tabs = JSON.parse(localStorage.getItem("prty_tabs")) || [
-  { id: Date.now(), name: "Cheat 1", content: "" }
-];
-let activeTab = tabs[0].id;
+/* Toggle sections */
+document.querySelectorAll('.section-header').forEach(h => {
+  h.onclick = () => h.parentElement.classList.toggle('open');
+});
 
-const editor = document.getElementById("editor");
-const tabsBar = document.getElementById("tabs");
-const fileInput = document.getElementById("fileInput");
-
-/* ===== PRESETS ===== */
-const presets = {
-  algebra: `x = (-b ± √(b² - 4ac)) / 2a`,
-  geometry: `Area Circle = πr²\nTriangle = ½bh`,
-  trig: `sin²θ + cos²θ = 1\nSOH CAH TOA`,
-  motion: `v = u + at\ns = ut + ½at²`,
-  electric: `V = IR\nP = VI`,
-  periodic: `Atomic size ↓ across\nElectronegativity ↑ across`,
-  gas: `PV = nRT`
-};
-
-/* ===== FUNCTIONS ===== */
-function renderTabs() {
-  tabsBar.innerHTML = "";
-  tabs.forEach(tab => {
-    const el = document.createElement("div");
-    el.className = "tab" + (tab.id === activeTab ? " active" : "");
-    el.innerHTML = `<span>${tab.name}</span><span class="close">×</span>`;
-    el.onclick = () => switchTab(tab.id);
-    el.querySelector(".close").onclick = e => {
-      e.stopPropagation();
-      removeTab(tab.id);
-    };
-    tabsBar.appendChild(el);
+/* Search */
+const search = document.getElementById('search');
+search.addEventListener('input', () => {
+  const q = search.value.toLowerCase();
+  document.querySelectorAll('.section').forEach(section => {
+    let match = false;
+    section.querySelectorAll('li').forEach(li => {
+      const show = li.textContent.toLowerCase().includes(q);
+      li.style.display = show ? 'block' : 'none';
+      if (show) match = true;
+    });
+    section.style.display = match || q === '' ? 'block' : 'none';
   });
-
-  const add = document.createElement("div");
-  add.className = "add-tab";
-  add.textContent = "+";
-  add.onclick = newTab;
-  tabsBar.appendChild(add);
-}
-
-function switchTab(id) {
-  saveContent();
-  activeTab = id;
-  editor.value = tabs.find(t => t.id === id).content;
-  renderTabs();
-}
-
-function newTab() {
-  const name = prompt("Tab name?");
-  if (!name) return;
-  const tab = { id: Date.now(), name, content: "" };
-  tabs.push(tab);
-  activeTab = tab.id;
-  editor.value = "";
-  saveAll();
-  renderTabs();
-}
-
-function removeTab(id) {
-  if (tabs.length === 1) return alert("At least one tab required.");
-  tabs = tabs.filter(t => t.id !== id);
-  activeTab = tabs[0].id;
-  editor.value = tabs[0].content;
-  saveAll();
-  renderTabs();
-}
-
-function deleteTab() {
-  removeTab(activeTab);
-}
-
-function saveContent() {
-  const tab = tabs.find(t => t.id === activeTab);
-  if (tab) tab.content = editor.value;
-  saveAll();
-}
-
-function saveAll() {
-  localStorage.setItem("prty_tabs", JSON.stringify(tabs));
-}
-
-function loadPreset(name) {
-  editor.value = presets[name];
-  saveContent();
-}
-
-function exportTab() {
-  const blob = new Blob([editor.value], { type: "text/plain" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "prty-cheat.txt";
-  a.click();
-}
-
-function triggerImport() {
-  fileInput.click();
-}
-
-fileInput.onchange = () => {
-  const file = fileInput.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    editor.value = e.target.result;
-    saveContent();
-  };
-  reader.readAsText(file);
-};
-
-editor.oninput = saveContent;
-
-/* INIT */
-editor.value = tabs.find(t => t.id === activeTab).content;
-renderTabs();
+});
 </script>
 
 </body>
