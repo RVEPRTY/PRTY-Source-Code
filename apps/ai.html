@@ -1,34 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>PRTY AI</title>
+  <title>PRTY - Learn Math</title>
   <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1b1b2f, #23234a);
+      overflow: hidden;
+    }
+
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, #ff00cc33, transparent 20%),
+                  radial-gradient(circle at 80% 70%, #00ffff33, transparent 20%);
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 0;
+      animation: floatBG 10s infinite alternate;
+    }
+
+    @keyframes floatBG {
+      0% { background-position: 0% 0%, 100% 100%; }
+      100% { background-position: 10% 5%, 90% 95%; }
+    }
+
+    .main {
+      position: relative;
+      z-index: 1;
+      margin-left: 240px; /* sidebar width */
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .embed-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .sidebar {
+      z-index: 2;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="sidebar" id="sidebar">
-  <h2>PRTY</h2>
-  <a href="index.html">Home</a>
-  <a href="games.html">Games</a>
-  <a href="apps.html">Apps</a>
-  <a href="movies.html">Movies</a>
-  <a href="manga.html">Manga</a>
-  <a href="proxy.html">Proxy</a>
-  <a href="credits.html">Credits</a>
-</div>
+  <div class="background-animation"></div>
 
-<button class="toggle" onclick="toggleSidebar()">☰</button>
+  <div class="sidebar" id="sidebar">
+    <h2>PRTY</h2>
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="apps.html">Apps</a>
+    <a href="movies.html">Movies</a>
+    <a href="manga.html">Manga</a>
+    <a href="proxy.html">Proxy</a>
+    <a href="ai.html">AI</a> <!-- NEW TAB -->
+    <a href="credits.html">Credits</a>
+    <a class="discord-btn" href="https://discord.gg/MdNsPVTJGv" target="_blank">Discord</a>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+  </div>
 
-<div class="main" style="padding:0;height:100vh;">
-  <iframe
-    src="https://learn-math.b-cdn.net/"
-    style="width:100%;height:100%;border:none;border-radius:12px;"
-    allow="clipboard-read; clipboard-write"
-    loading="lazy">
-  </iframe>
-</div>
+  <div class="main">
+    <iframe 
+      src="https://learn-math.b-cdn.net/"
+      class="embed-frame"
+      allow="fullscreen"
+      loading="lazy">
+    </iframe>
+  </div>
 
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
+
 </body>
 </html>
