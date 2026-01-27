@@ -57,7 +57,6 @@ function launchPRTY(url) {
     "☀️ good morning, PRTY is awake",
     "☀️ early grind?",
     "☀️ starting the day with PRTY"
-    "☀️ I WAS A GIRL IN A VILLAGE DOING ALRIGHT, BUT BECAME A PRINCESS OVERNIGHT"
   ];
 
   const nightMessages = [
