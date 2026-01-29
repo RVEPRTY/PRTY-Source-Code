@@ -37,3 +37,31 @@ function openRadioProxy() {
     "_blank"
     );
 }
+
+
+Luis Cruz <luisofficialbusiness@gmail.com>
+5:38 PM (0 minutes ago)
+to me
+
+function speakPRTY(message) {
+  if (!("speechSynthesis" in window)) return;
+
+  const utterance = new SpeechSynthesisUtterance(message);
+
+  utterance.rate = 1;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+
+  const voices = speechSynthesis.getVoices();
+  const preferred = voices.find(v =>
+    v.name.toLowerCase().includes("google")
+  );
+  if (preferred) utterance.voice = preferred;
+
+  speechSynthesis.cancel(); // stop any previous speech
+  speechSynthesis.speak(utterance);
+}
+
+function playStation(name) {
+  speakPRTY(`Thank you for tuning in to PRTY Radio ${name}`);
+}
