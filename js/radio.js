@@ -4,13 +4,13 @@ const stations = [
   "https://soundcloud.com/luis-cruz-499857984/sets/prty-radio",
 
   //  Late Night
-  "https://soundcloud.com/YOUR_PLAYLIST_LINK",
+  "https://soundcloud.com/stormmusicgroup/sets/late-night-playlist",
 
   //  Energy
-  "https://soundcloud.com/YOUR_PLAYLIST_LINK",
+  "https://soundcloud.com/stormmusicgroup/sets/hype-gaming-music",
 
   //  Chill
-  "https://soundcloud.com/real-basil-omori-read-desc/sets/tuff-chill-playlist-for?si=3db79f9de20743fa88a3b615bfe9504b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+  "https://soundcloud.com/real-basil-omori-read-desc/sets/tuff-chill-playlist-for"
 ];
 
 const frame = document.getElementById("radio-frame");
