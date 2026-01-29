@@ -28,7 +28,7 @@ window.addEventListener("load", () => {
 });
 
 function openRadioProxy() {
-  const radioURL = window.location.origin + "/radio.html" ;
+  const radioURL = "https://prty-site.vercel.app/radio.html" ;
   const encoded =
     encodeURIComponent(radioURL)
   window.open(
