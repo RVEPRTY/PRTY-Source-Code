@@ -1,7 +1,7 @@
 // 🔊 ADD YOUR SOUNDCLOUD PLAYLIST LINKS HERE
 const stations = [
   // 🔥 Main
-  "https://soundcloud.com/YOUR_PLAYLIST_LINK",
+  "https://soundcloud.com/luis-cruz-499857984/sets/prty-radio",
 
   // 🌙 Late Night
   "https://soundcloud.com/YOUR_PLAYLIST_LINK",
@@ -10,7 +10,7 @@ const stations = [
   "https://soundcloud.com/YOUR_PLAYLIST_LINK",
 
   // 🧊 Chill
-  "https://soundcloud.com/YOUR_PLAYLIST_LINK"
+  "https://soundcloud.com/real-basil-omori-read-desc/sets/tuff-chill-playlist-for?si=3db79f9de20743fa88a3b615bfe9504b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
 ];
 
 const frame = document.getElementById("radio-frame");
