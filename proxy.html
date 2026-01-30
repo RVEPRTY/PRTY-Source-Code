@@ -1,34 +1,137 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
-  <title>PRTY - Proxy</title>
+  <title>Proxy</title>
+  <link rel="icon" type="image/png" href="assets/canvascloak.png">
   <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
 
+  <style>
+    :root {
+      --prty-bg-1: #0f172a;   /* exact dark blue */
+      --prty-bg-2: #1e3a8a;   /* exact gradient blue */
+      --prty-accent: #2563eb; /* exact button blue */
+    }
+
+    /* Fullscreen iframe behind everything */
+    .proxy-frame {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: 1;
+    }
+
+    /* Container to the right of the sidebar */
+    .proxy-container {
+      position: fixed;
+      top: 0;
+      left: 250px; /* your sidebar width */
+      width: calc(100vw - 250px);
+      height: 100vh;
+      z-index: 9000;
+      pointer-events: none;
+    }
+
+    /* prty-learning gradient background */
+    .proxy-select-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--prty-bg-1), var(--prty-bg-2));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Floating white card */
+    .proxy-card {
+      background: white;
+      width: 420px;
+      padding: 35px 40px;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .proxy-card h1 {
+      margin: 0 0 25px 0;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--prty-accent);
+    }
+
+    .proxy-card button {
+      width: 100%;
+      background: var(--prty-accent);
+      color: white;
+      border: none;
+      padding: 14px 0;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: 0.2s;
+    }
+
+    .proxy-card button:hover {
+      background: var(--prty-bg-2);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="proxy-page">
+
+<!-- SIDEBAR (unchanged) -->
 <div class="sidebar" id="sidebar">
   <h2>PRTY</h2>
   <a href="index.html">Home</a>
   <a href="games.html">Games</a>
   <a href="apps.html">Apps</a>
-  <a href="movies.html">Movies (Google Drive)</a>
+  <a href="movies.html">Movies</a>
+  <a href="manga.html">Manga</a>
   <a href="proxy.html">Proxy</a>
-  <a href="credits.html">Credits</a>
+  <a class="discord-btn" href="https://discord.gg/MdNsPVTJGv" target="_blank">Discord</a>
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 </div>
 
-<button class="toggle" onclick="toggleSidebar()">☰</button>
+<!-- SELECTOR -->
+<div class="proxy-container">
+  <div id="proxySelect" class="proxy-select-screen">
+    <div class="proxy-card">
+      <h1>Select a Proxy</h1>
 
-<div class="main">
-<h1 class="page-title">🌐 Proxy Links</h1>
-<div class="grid">
-<script>
-for(let i=1;i<=20;i++){
-  document.write(`<div class="card">Proxy ${i}</div>`);
-}
-</script>
+      <button onclick="
+        document.getElementById('proxyFrame').src='https://mathlete-education.b-cdn.net/';
+        document.getElementById('proxySelect').style.display='none';
+      ">
+        Scramjet
+      </button>
+
+      <button onclick="
+        document.getElementById('proxyFrame').src='https://prty-learning.b-cdn.net/';
+        document.getElementById('proxySelect').style.display='none';
+      ">
+        Ultraviolet
+      </button>
+    </div>
+  </div>
 </div>
-</div>
+
+<!-- FULLSCREEN IFRAME -->
+<iframe id="proxyFrame" class="proxy-frame" allow="fullscreen" loading="lazy"></iframe>
 
 <script src="js/main.js"></script>
+
 </body>
 </html>
