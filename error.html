@@ -3,128 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <title>PRTY Error</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #0f172a, #020617);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: Arial, sans-serif;
-      color: #fff;
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: background 0.4s ease;
     }
 
-    .error-box {
-      background: linear-gradient(135deg, #1b1b2f, #23234a);
+    .box {
+      max-width: 600px;
       padding: 40px;
       border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
-      max-width: 420px;
-      width: 90%;
+      background: rgba(0,0,0,0.35);
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
     }
 
-    .error-code {
+    h1 {
       font-size: 4rem;
-      font-weight: bold;
-      color: #ff4d4d;
-      text-shadow: 0 0 15px #ff4d4d;
       margin: 0;
     }
 
-    .error-title {
-      margin-top: 10px;
-      font-size: 1.5rem;
-      color: #00ffff;
-    }
-
-    .error-phrase {
-      margin: 20px 0;
-      font-style: italic;
-      opacity: 0.85;
-    }
-
-    .error-desc {
+    h2 {
+      margin: 10px 0;
       opacity: 0.9;
-      margin-bottom: 25px;
     }
 
-    .error-box button {
-      padding: 12px 20px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
+    p {
+      opacity: 0.8;
+      font-size: 1.1rem;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 22px;
       font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: white;
+      color: black;
       font-weight: bold;
-      background: linear-gradient(135deg, #ff00cc, #00ffff);
-      color: #000;
-      transition: 0.2s ease;
+      transition: transform 0.15s ease, opacity 0.15s ease;
     }
 
-    .error-box button:hover {
+    button:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 15px #00ffff;
+      opacity: 0.9;
     }
+
+    /* COLOR THEMES */
+    .error-404 { background: linear-gradient(135deg, #4b2cff, #1a1a3d); }
+    .error-403 { background: linear-gradient(135deg, #ff0055, #2a0012); }
+    .error-500 { background: linear-gradient(135deg, #7a0000, #2a0000); }
+    .error-502 { background: linear-gradient(135deg, #ff8c00, #402200); }
+    .error-503 { background: linear-gradient(135deg, #ffd000, #403600); }
+    .error-504 { background: linear-gradient(135deg, #00e5ff, #002a30); }
+    .error-451 { background: linear-gradient(135deg, #777777, #222222); }
+    .error-418 { background: linear-gradient(135deg, #ff00ff, #00ffff); }
+    .error-prty { background: linear-gradient(135deg, #ff00cc, #330033); }
   </style>
 </head>
 <body>
 
-  <div class="error-box">
-    <div class="error-code" id="errorCode">404</div>
-    <div class="error-title" id="errorTitle">PRTY tripped.</div>
-
-    <div class="error-phrase" id="errorPhrase"></div>
-
-    <div class="error-desc" id="errorDesc">
-      Something went wrong on PRTY’s side.
-    </div>
-
-    <button onclick="location.href='index.html'">
-      Back to PRTY
-    </button>
+  <div class="box">
+    <h1 id="code">ERR</h1>
+    <h2 id="title">Something went wrong</h2>
+    <p id="phrase">The party got a little chaotic.</p>
+    <button id="actionBtn">Go Home</button>
   </div>
 
   <script>
-    // Get error code from URL (?code=500)
     const params = new URLSearchParams(window.location.search);
-    const code = params.get("code") || "404";
+    let code = params.get("code") || "404";
 
-    const errorMap = {
-      "404": {
-        title: "Page not found",
-        desc: "This page dipped or never existed."
-      },
-      "500": {
-        title: "Internal Error",
-        desc: "PRTY messed up. That’s on us."
-      },
-      "503": {
-        title: "Service Unavailable",
-        desc: "PRTY is taking a quick breather."
-      }
-    };
-
-    const phrases = [
-      "PRTY.exe stopped partying.",
-      "This wasn’t in the plans.",
-      "Someone unplugged something.",
-      "404 vibes only.",
-      "PRTY fumbled the bag.",
-      "We looked everywhere. Gone.",
-      "This page ghosted us.",
-      "PRTY needs a minute."
-    ];
-
-    document.getElementById("errorCode").textContent = code;
-
-    if (errorMap[code]) {
-      document.getElementById("errorTitle").textContent = errorMap[code].title;
-      document.getElementById("errorDesc").textContent = errorMap[code].desc;
+    // 1 in 1,000,000 joke error
+    if (Math.floor(Math.random() * 1_000_000) === 777777) {
+      code = "418";
     }
 
-    document.getElementById("errorPhrase").textContent =
+    const phrases = [
+      "The party went too hard.",
+      "Someone spilled the punch.",
+      "PRTY took a wrong turn.",
+      "This wasn't on the guest list.",
+      "We swear it worked a second ago.",
+      "Certified PRTY moment."
+    ];
+
+    const errors = {
+      "404": { title: "Page Not Found", btn: "Back to Home" },
+      "403": { title: "Access Denied", btn: "Go Back" },
+      "500": { title: "Server Error", btn: "Reload Page" },
+      "502": { title: "Proxy Failed", btn: "Reset PRTY", reset: true },
+      "503": { title: "Service Unavailable", btn: "Try Again" },
+      "504": { title: "Request Timed Out", btn: "Retry" },
+      "451": { title: "Unavailable", btn: "Go Home" },
+      "418": { title: "I'm a Teapot ☕", btn: "Brew Tea" },
+      "PRTY-001": { title: "Party Overload", btn: "Retry Later", custom: true }
+    };
+
+    const data = errors[code] || errors["404"];
+
+    document.body.classList.add(`error-${code}`);
+    document.getElementById("code").textContent = code;
+    document.getElementById("title").textContent = data.title;
+    document.getElementById("phrase").textContent =
       phrases[Math.floor(Math.random() * phrases.length)];
+
+    const btn = document.getElementById("actionBtn");
+    btn.textContent = data.btn;
+
+    btn.onclick = () => {
+      if (data.reset) {
+        localStorage.clear();
+        sessionStorage.clear();
+        location.href = "/";
+      } else if (code === "500") {
+        location.reload();
+      } else {
+        location.href = "/";
+      }
+    };
   </script>
 
 </body>
