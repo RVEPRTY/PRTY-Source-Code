@@ -1,59 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>PRTY Settings</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/settings.css">
 </head>
-<body class="settings-page">
+<body>
 
-<div class="settings-container">
-  <div class="settings-header">
-    <h1>⚙️ PRTY Settings</h1>
-    <p>Customize your PRTY experience</p>
-  </div>
+<!-- SIDEBAR (unchanged) -->
+<div class="sidebar" id="sidebar">
+  <h2>PRTY</h2>
+  <a href="index.html">Home</a>
+  <a href="games.html">Games</a>
+  <a href="apps.html">Apps</a>
+  <a href="movies.html">Movies</a>
+  <a href="manga.html">Manga</a>
+  <a href="settings.html" class="active">Settings</a>
+</div>
 
-  <!-- THEMES -->
+<button class="toggle" onclick="toggleSidebar()">☰</button>
+
+<!-- MAIN -->
+<div class="main">
+  <h1 class="page-title">⚙️ Settings</h1>
+
+  <!-- SHORTCUTS -->
   <div class="settings-card">
-    <h2>🎨 Themes</h2>
-    <select onchange="setTheme(this.value)">
-      <option value="dark">Dark (Default)</option>
-      <option value="light">Light</option>
-      <option value="red">Red</option>
-      <option value="blue">Blue</option>
-      <option value="green">Green</option>
-      <option value="purple">Purple</option>
-      <option value="prty">PRTY Mode 🎉</option>
-    </select>
+    <h2>🔗 Shortcuts</h2>
+    <button onclick="setShortcut('games.html')">PRTY Games</button>
+    <button onclick="setShortcut('movies.html')">PRTY Cinema</button>
+    <button onclick="setShortcut('manga.html')">PRTY Manga</button>
+    <button onclick="clearShortcut()">Clear Shortcut</button>
   </div>
 
   <!-- CLOAK -->
   <div class="settings-card">
-    <h2>🕶️ Tab Cloak</h2>
-    <div class="button-row">
-      <button onclick="cloakPreset('ClassLink')">ClassLink</button>
-      <button onclick="cloakPreset('Google')">Google</button>
-      <button onclick="cloakPreset('Canvas')">Canvas</button>
-    </div>
-
-    <h3>Custom Cloak</h3>
-    <input placeholder="Custom Tab Title" oninput="setCustomTitle(this.value)">
-    <input placeholder="Favicon URL (.ico / .png)" oninput="setCustomIcon(this.value)">
+    <h2>🕵️ Cloak</h2>
+    <button onclick="setCloak('ClassLink', 'https://www.classlink.com/favicon.ico')">
+      ClassLink
+    </button>
+    <button onclick="setCloak('Google Classroom', 'https://classroom.google.com/favicon.ico')">
+      Google Classroom
+    </button>
+    <button onclick="resetCloak()">Reset Cloak</button>
   </div>
 
-  <!-- REPORT -->
-  <div class="settings-card">
-    <h2>🚨 Report an Issue</h2>
-    <p>Broken movie or manga?</p>
-    <button onclick="reportIssue()">Report Problem</button>
-  </div>
-
-  <!-- FUN BUTTON -->
-  <div class="settings-card fun-card">
-    <h2>🎉 Absolutely Useless Button</h2>
-    <button onclick="doNothing()">Do Not Click</button>
-  </div>
 </div>
 
+<script src="js/main.js"></script>
 <script src="js/settings.js"></script>
+<script src="js/prty-settings.js"></script>
 </body>
 </html>
