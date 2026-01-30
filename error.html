@@ -72,7 +72,11 @@
   </style>
 </head>
 <body>
-
+  
+<button id="statusBtn" style="margin-top:10px; display:none;">
+  📡 Send Status Update
+</button>
+  
   <div class="box">
     <h1 id="code">ERR</h1>
     <h2 id="title">Something went wrong</h2>
@@ -132,6 +136,46 @@
         location.href = "/";
       }
     };
+
+    // ===== WEBHOOK PLACEHOLDER =====
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1466793878802792573/KyylMxfUHCIJMXTOqBq8dFtO2AwtZ8mj1yNYAFi--CYkYAFbEHLKU98aN4hT96otfFjv";
+
+// Errors that should auto-send
+const CRITICAL_ERRORS = ["500", "502", "503", "451"];
+
+// Build webhook message
+function sendStatus(auto = false) {
+  const payload = {
+    content: `🚨 **PRTY STATUS ALERT**
+Error Code: **${code}**
+Page: \`${location.pathname}\`
+Auto: ${auto ? "Yes" : "Manual"}
+Time: ${new Date().toUTCString()}`
+  };
+
+  fetch(WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).catch(() => {});
+}
+
+// ===== AUTO SEND (ONCE PER SESSION) =====
+if (CRITICAL_ERRORS.includes(code)) {
+  if (!sessionStorage.getItem("prty-webhook-sent")) {
+    sendStatus(true);
+    sessionStorage.setItem("prty-webhook-sent", "true");
+  }
+
+  // Show manual button too
+  document.getElementById("statusBtn").style.display = "inline-block";
+}
+
+// ===== MANUAL BUTTON =====
+document.getElementById("statusBtn").onclick = () => {
+  sendStatus(false);
+  alert("PRTY status update sent.");
+};
   </script>
 
 </body>
