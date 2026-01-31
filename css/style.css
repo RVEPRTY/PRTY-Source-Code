@@ -592,3 +592,19 @@ body.proxy-page {
   background: #000;
   z-index: 2;
 }
+
+.premium-game {
+  opacity: 0.7;
+  position: relative;
+}
+
+.premium-game:hover {
+  opacity: 1;
+}
+
+.premium-box {
+  max-width: 400px;
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 12px;
+}
