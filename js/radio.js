@@ -142,10 +142,13 @@ window.addEventListener("load", () => {
 
 // Proxy open
 function openRadioProxy() {
-  const radioURL = "https://prty-site.vercel.app/radio.html";
-  const encoded = encodeURIComponent(radioURL);
+  const radioURL = 
+    "https://prty-site.vercel.app/radio.html";
+  const encoded = 
+    encodeURIComponent(radioURL);
 
   window.open(
+    
     `https://prty-learning.b-cdn.net/service/${encoded}`,
     "_blank"
   );
