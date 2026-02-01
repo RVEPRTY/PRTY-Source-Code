@@ -87,21 +87,21 @@ function prtySays() {
   // Time-based lines
   if (hour >= 22 || hour < 5) {
     lines.push(
-      "Late night PRTY Radio hits different.",
+      "Late night PARTY Radio hits different.",
       "After hours vibes detected.",
       "You’re deep into the night session."
     );
   } else if (hour < 12) {
     lines.push(
-      "Good morning. PRTY Radio is live.",
+      "Good morning. PARTY Radio is live.",
       "Starting the day with good music.",
       "Morning energy online."
     );
   } else {
     lines.push(
-      "You’re locked into PRTY Radio.",
+      "You’re locked into PARTY Radio.",
       "Good choice staying here.",
-      "PRTY Radio certified moment."
+      "PARTY Radio certified moment."
     );
   }
 
@@ -109,7 +109,7 @@ function prtySays() {
   if (minutesOnSite >= 15) {
     lines.push(
       "You’ve been here a while. Respect.",
-      "PRTY Radio appreciates you.",
+      "PARTY Radio appreciates you.",
       "At this point, you’re part of the station."
     );
   }
@@ -124,7 +124,7 @@ function selectStation(index, name) {
   prtySaysEnabled = true;
 
   loadStation(index);
-  speakPRTY(`Thank you for tuning in to PRTY Radio ${name}`);
+  speakPRTY(`Thank you for tuning in to PARTY Radio ${name} Station`);
 
   // Delayed PRTY Says
   setTimeout(prtySays, 20000 + Math.random() * 20000);
