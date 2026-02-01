@@ -90,18 +90,22 @@ function prtySays() {
       "Late night PARTY Radio hits different.",
       "After hours vibes detected.",
       "You’re deep into the night session."
+      "Sleep, you should!"
     );
   } else if (hour < 12) {
     lines.push(
       "Good morning. PARTY Radio is live.",
       "Starting the day with good music.",
       "Morning energy online."
+      "Wake up in the morning like P Diddy"
     );
   } else {
     lines.push(
       "You’re locked into PARTY Radio.",
       "Good choice staying here.",
       "PARTY Radio certified moment."
+      "This message is brought to you by the PARTY Dev Team"
+      "If you're discord username is Virgo, hi"
     );
   }
 
