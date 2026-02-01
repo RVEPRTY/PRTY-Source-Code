@@ -98,29 +98,6 @@ function launchPRTY(url) {
   });
 })();
 
-/* ===== GLOBAL LOADING SCREEN ===== */
-(function () {
-  const loader = document.getElementById("loading-screen");
-  const text = document.getElementById("loading-text");
-  if (!loader || !text) return;
-
-  const phrases = [
-    "is this kinda like Frogiee's Arcade?",
-    "Mr Beast, Give some money",
-    "HELP, IDK WHAT TO PUT HERE",
-    "GG, chat",
-    "Lightspeed is ass"
-  ];
-
-  text.innerText = phrases[Math.floor(Math.random() * phrases.length)];
-
-  window.addEventListener("load", () => {
-    loader.style.transition = "opacity 0.5s ease";
-    loader.style.opacity = 0;
-    setTimeout(() => loader.style.display = "none", 500);
-  });
-})();
-
 /* ===== APPLY SAVED SETTINGS ===== */
 window.addEventListener("load", () => {
   const theme = localStorage.getItem("prty-theme");
