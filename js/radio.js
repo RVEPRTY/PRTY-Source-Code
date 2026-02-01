@@ -14,8 +14,12 @@ const stations = [
 ];
 
 const frame = document.getElementById("radio-frame");
+
 let voiceReady = false;
 let lastSpoken = "";
+let sessionStart = Date.now();
+let prtySaysEnabled = false;
+let lastPRTYSayTime = 0;
 
 // Load station
 function loadStation(index) {
@@ -26,15 +30,13 @@ function loadStation(index) {
     `&show_user=false&show_reposts=false&visual=true`;
 }
 
-// Initialize voices safely
+// Init voices
 function initVoices() {
   const voices = speechSynthesis.getVoices();
-  if (voices.length > 0) {
-    voiceReady = true;
-  }
+  if (voices.length > 0) voiceReady = true;
 }
 
-// Voice handler
+// Core voice function
 function speakPRTY(message) {
   if (!("speechSynthesis" in window)) return;
   if (!voiceReady) return;
@@ -58,20 +60,73 @@ function speakPRTY(message) {
   speechSynthesis.speak(utterance);
 }
 
-// Button handler (USER INTERACTION — REQUIRED)
-function selectStation(index, name) {
-  initVoices(); // unlock voices
-  loadStation(index);
-  speakPRTY(`Thank you for tuning in to PRTY Radio ${name}`);
+// PRTY Says logic
+function prtySays() {
+  if (!prtySaysEnabled) return;
+
+  const now = Date.now();
+
+  // Cooldown: once every 3–6 minutes
+  if (now - lastPRTYSayTime < 180000 + Math.random() * 180000) return;
+  lastPRTYSayTime = now;
+
+  const hour = new Date().getHours();
+  const minutesOnSite = Math.floor((now - sessionStart) / 60000);
+
+  let lines = [];
+
+  // Time of day
+  if (hour >= 22 || hour < 5) {
+    lines.push(
+      "Late night vibes detected.",
+      "You should probably be asleep… but this goes hard.",
+      "PRTY Radio after hours hits different."
+    );
+  } else if (hour < 12) {
+    lines.push(
+      "Good morning. PRTY Radio is now online.",
+      "Starting the day with good music.",
+      "Morning energy activated."
+    );
+  } else {
+    lines.push(
+      "You’re locked into PRTY Radio.",
+      "Good choice staying here.",
+      "PRTY Radio certified moment."
+    );
+  }
+
+  // Session-based
+  if (minutesOnSite >= 15) {
+    lines.push(
+      "You’ve been here a while. Respect.",
+      "PRTY Radio thanks you for staying.",
+      "At this point, you’re part of the station."
+    );
+  }
+
+  const line = lines[Math.floor(Math.random() * lines.length)];
+  speakPRTY(line);
 }
 
-// Random station on load (NO VOICE HERE — browser rules)
+// User interaction handler
+function selectStation(index, name) {
+  initVoices(); // unlock voices
+  prtySaysEnabled = true; // allow PRTY Says
+  loadStation(index);
+  speakPRTY(`Thank you for tuning in to PRTY Radio ${name}`);
+
+  // Delayed PRTY Says
+  setTimeout(prtySays, 20000 + Math.random() * 20000);
+}
+
+// Random station on load (silent)
 window.addEventListener("load", () => {
   const random = Math.floor(Math.random() * stations.length);
   loadStation(random);
 });
 
-// Optional proxy open (unchanged logic, fixed string bug)
+// Optional proxy open
 function openRadioProxy() {
   const radioURL = "https://prty-site.vercel.app/radio.html";
   const encoded = encodeURIComponent(radioURL);
