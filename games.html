@@ -30,7 +30,7 @@
 
   <div class="grid">
 
-    <div class="card game-card" data-type="game" data-category="story" onclick="launchGame('games/fnaf6.html')">
+    <div class="card game-card" data-type="game" data-category="story" onclick="openGame('games/fnaf6.html')">
       <img src="images/fnaf6.png">
       <div class="game-title">FNAF 6</div>
     </div>
@@ -492,5 +492,10 @@
 
 
 <script src="js/main.js"></script>
+  <script>
+    function openGame(url) {
+      window.location.href = "play.html?game="+ encodeURIComponent(url);
+    }
+  </script>
 </body>
 </html>
