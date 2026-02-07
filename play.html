@@ -65,12 +65,12 @@
     <button onclick="openBlank()">🕶 about:blank</button>
   </div>
 
-  <!-- GAME FRAME -->
-  <iframe
-    id="game-frame"
-    style="width:100%; height:80vh; border:none;"
-    allowfullscreen
-  ></iframe>
+
+<iframe
+  id="game-frame"
+  style="width:100%; height:80vh; margin-top:90px; border:none;"
+  allowfullscreen
+></iframe>
 
 </div>
 
@@ -101,11 +101,9 @@ function openBlank() {
   const win = window.open("about:blank");
   if (!win) return;
 
-  win.document.write(`
-    <iframe src="${frame.src}"
-      style="border:none;width:100vw;height:100vh;"></iframe>
-  `);
+  win.location.href = frame.src;
 }
+
 </script>
 
 </body>
