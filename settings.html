@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>PRTY Settings</title>
+  <link rel="icon" type="image/png" href="assets/canvas.png">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/settings.css">
 </head>
+
 <body>
 
-<!-- SIDEBAR (unchanged) -->
 <div class="sidebar" id="sidebar">
   <h2>PRTY</h2>
   <a href="index.html">Home</a>
@@ -15,40 +16,36 @@
   <a href="apps.html">Apps</a>
   <a href="movies.html">Movies</a>
   <a href="manga.html">Manga</a>
-  <a href="settings.html" class="active">Settings</a>
+  <a href="radio.html">Radio</a>
+  <a href="settings.html">Settings</a>
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 </div>
 
-<button class="toggle" onclick="toggleSidebar()">☰</button>
+<div class="main settings-main">
 
-<!-- MAIN -->
-<div class="main">
-  <h1 class="page-title">⚙️ Settings</h1>
+  <h1>⚙️ PRTY Settings</h1>
 
-  <!-- SHORTCUTS -->
-  <div class="settings-card">
-    <h2>🔗 Shortcuts</h2>
-    <button onclick="setShortcut('games.html')">PRTY Games</button>
-    <button onclick="setShortcut('movies.html')">PRTY Cinema</button>
-    <button onclick="setShortcut('manga.html')">PRTY Manga</button>
-    <button onclick="clearShortcut()">Clear Shortcut</button>
-  </div>
+  <div class="settings-grid">
 
-  <!-- CLOAK -->
-  <div class="settings-card">
-    <h2>🕵️ Cloak</h2>
-    <button onclick="setCloak('ClassLink', 'https://www.classlink.com/favicon.ico')">
-      ClassLink
-    </button>
-    <button onclick="setCloak('Google Classroom', 'https://classroom.google.com/favicon.ico')">
-      Google Classroom
-    </button>
-    <button onclick="resetCloak()">Reset Cloak</button>
+    <div class="settings-card">
+      <h3>✨ Visual Modes</h3>
+      <button onclick="toggleNeon()">Toggle Neon Mode</button>
+      <button onclick="toggleLowPower()">Toggle Low Power</button>
+      <button onclick="toggleAnimations()">Toggle No Animations</button>
+    </div>
+
+    <div class="settings-card">
+      <h3>🕶 Cloak Presets</h3>
+      <button onclick="setCloak('Google', 'https://www.google.com/favicon.ico')">Google</button>
+      <button onclick="setCloak('Classroom', 'https://ssl.gstatic.com/classroom/favicon.png')">Google Classroom</button>
+      <button onclick="resetCloak()">Reset Cloak</button>
+    </div>
+
   </div>
 
 </div>
 
 <script src="js/main.js"></script>
 <script src="js/settings.js"></script>
-<script src="js/prty-settings.js"></script>
 </body>
 </html>
