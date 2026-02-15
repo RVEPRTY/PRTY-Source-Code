@@ -1,9 +1,34 @@
-/* ====== SIDEBAR TOGGLE ====== */
-function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  if (!sidebar) return;
-  sidebar.classList.toggle("closed");
-}
+/* =====================================
+   PRTY UNIVERSAL SETTINGS CORE
+===================================== */
+
+(function applyPRTYSettings() {
+
+  const theme = localStorage.getItem("prty-theme");
+  const cloakTitle = localStorage.getItem("cloakTitle");
+  const cloakIcon = localStorage.getItem("cloakIcon");
+  const neon = localStorage.getItem("neonMode");
+  const lowPower = localStorage.getItem("lowPower");
+  const noAnimations = localStorage.getItem("noAnimations");
+
+  if (theme) document.body.className = theme;
+  if (cloakTitle) document.title = cloakTitle;
+
+  if (cloakIcon) {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    link.href = cloakIcon;
+  }
+
+  if (neon === "true") document.body.classList.add("neon");
+  if (lowPower === "true") document.body.classList.add("low-power");
+  if (noAnimations === "true") document.body.classList.add("no-animations");
+
+})();
 
 /* ====== LIVE CLOCK & DATE ====== */
 function updateClock() {
