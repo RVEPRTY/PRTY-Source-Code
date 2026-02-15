@@ -1,33 +1,39 @@
-.settings-card {
-  background: linear-gradient(135deg, #1b1b2f, #23234a);
-  border-radius: 14px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+.settings-main {
+  padding: 40px;
 }
 
-.settings-card h2 {
-  margin-top: 0;
-  color: #00ffff;
-  text-shadow: 0 0 10px #ff00cc;
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.settings-card {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(15px);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,255,255,0.25);
+}
+
+.settings-card h3 {
+  margin-bottom: 15px;
 }
 
 .settings-card button {
-  display: block;
   width: 100%;
-  margin-top: 10px;
+  margin-bottom: 10px;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 30px;
   border: none;
-  font-size: 1em;
   font-weight: bold;
   cursor: pointer;
-  background: linear-gradient(135deg, #ff00cc, #00ffff);
-  color: #000;
+  background: linear-gradient(135deg, #00ffff, #ff00cc);
+  color: black;
   transition: 0.2s ease;
 }
 
 .settings-card button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 15px #00ffff;
+  transform: scale(1.05);
 }
