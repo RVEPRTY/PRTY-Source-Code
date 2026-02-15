@@ -1,23 +1,29 @@
-// SHORTCUTS
-function setShortcut(page) {
-  localStorage.setItem("prty-shortcut", page);
-  alert("Shortcut saved!");
+function toggleNeon() {
+  const enabled = localStorage.getItem("neonMode") === "true";
+  localStorage.setItem("neonMode", !enabled);
+  location.reload();
 }
 
-function clearShortcut() {
-  localStorage.removeItem("prty-shortcut");
-  alert("Shortcut cleared!");
+function toggleLowPower() {
+  const enabled = localStorage.getItem("lowPower") === "true";
+  localStorage.setItem("lowPower", !enabled);
+  location.reload();
 }
 
-// CLOAK
+function toggleAnimations() {
+  const enabled = localStorage.getItem("noAnimations") === "true";
+  localStorage.setItem("noAnimations", !enabled);
+  location.reload();
+}
+
 function setCloak(title, icon) {
-  localStorage.setItem("prty-cloak-title", title);
-  localStorage.setItem("prty-cloak-icon", icon);
-  alert("Cloak applied!");
+  localStorage.setItem("cloakTitle", title);
+  localStorage.setItem("cloakIcon", icon);
+  location.reload();
 }
 
 function resetCloak() {
-  localStorage.removeItem("prty-cloak-title");
-  localStorage.removeItem("prty-cloak-icon");
-  alert("Cloak reset!");
+  localStorage.removeItem("cloakTitle");
+  localStorage.removeItem("cloakIcon");
+  location.reload();
 }
